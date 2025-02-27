@@ -76,8 +76,8 @@ github.com/containernetworking/cni v1.2.3 h1:hhOcjNVUQTnzdRJ6alC5XF+wd9mfGIUaj8F
 github.com/containernetworking/cni v1.2.3/go.mod h1:DuLgF+aPd3DzcTQTtp/Nvl1Kim23oFKdm2okJzBQA5M=
 github.com/containernetworking/plugins v1.5.1 h1:T5ji+LPYjjgW0QM+KyrigZbLsZ8jaX+E5J/EcKOE4gQ=
 github.com/containernetworking/plugins v1.5.1/go.mod h1:MIQfgMayGuHYs0XdNudf31cLLAC+i242hNm6KuDGqCM=
-github.com/containers/buildah v1.39.0 h1:/OpzH7eMQYLg6pyguk6vugqScoZm8fIiN6wgMre9nUY=
-github.com/containers/buildah v1.39.0/go.mod h1:PTC4lCOwVfT3esN7Kxf2j8Aa3uqxsyUZudECLeGJlkY=
+github.com/containers/buildah v1.39.1 h1:Z2nh9Tf/xw0JVDirC8u/qzDHE8ntqkz1khdwPsl4p9U=
+github.com/containers/buildah v1.39.1/go.mod h1:M5BDDzRezS8/FbvGdh35FHbltteaMRElNrZ0LgX6UP8=
 github.com/containers/common v0.62.0 h1:Sl9WE5h7Y/F3bejrMAA4teP1EcY9ygqJmW4iwSloZ10=
 github.com/containers/common v0.62.0/go.mod h1:Yec+z8mrSq4rydHofrnDCBqAcNA/BGrSg1kfFUL6F6s=
 github.com/containers/conmon v2.0.20+incompatible h1:YbCVSFSCqFjjVwHTPINGdMX1F6JXHGTUje2ZYobNrkg=
@@ -86,8 +86,8 @@ github.com/containers/gvisor-tap-vsock v0.8.3 h1:Am3VdjXTn8Mn+dNhgkiRcCFOTSM8u9a
 github.com/containers/gvisor-tap-vsock v0.8.3/go.mod h1:46MvrqNuRNbjV4ZsZ3mHVJjR2Eh+fpyRh72EvWWFFjU=
 github.com/containers/image/v5 v5.34.0 h1:HPqQaDUsox/3mC1pbOyLAIQEp0JhQqiUZ+6JiFIZLDI=
 github.com/containers/image/v5 v5.34.0/go.mod h1:/WnvUSEfdqC/ahMRd4YJDBLrpYWkGl018rB77iB3FDo=
-github.com/containers/libhvee v0.9.0 h1:5UxJMka1lDfxTeITA25Pd8QVVttJAG43eQS1Getw1tc=
-github.com/containers/libhvee v0.9.0/go.mod h1:p44VJd8jMIx3SRN1eM6PxfCEwXQE0lJ0dQppCAlzjPQ=
+github.com/containers/libhvee v0.10.0 h1:7VLv8keWZpHuGmWvyY4c1mVH5V1JYb1G78VC+8AlrM0=
+github.com/containers/libhvee v0.10.0/go.mod h1:at0h8lRcK5jCKfQgU/e6Io0Mw12F36zRLjXVOXRoDTM=
 github.com/containers/libtrust v0.0.0-20230121012942-c1716e8a8d01 h1:Qzk5C6cYglewc+UyGf6lc8Mj2UaPTHy/iF2De0/77CA=
 github.com/containers/libtrust v0.0.0-20230121012942-c1716e8a8d01/go.mod h1:9rfv8iPl1ZP7aqh9YA68wnZv2NUDbXdcdPHVz0pFbPY=
 github.com/containers/luksy v0.0.0-20250106202729-a3a812db5b72 h1:hdBIFaml6hO+Bal8CdQSQPTF305gwsJfubs4NoOV53A=
@@ -168,8 +168,8 @@ github.com/gin-contrib/sse v0.1.0 h1:Y/yl/+YNO8GZSjAhjMsSuLt29uWRFHdHYUb5lYOV9qE
 github.com/gin-contrib/sse v0.1.0/go.mod h1:RHrZQHXnP2xjPF+u1gW/2HnVO7nvIa9PG3Gm+fLHvGI=
 github.com/gin-gonic/gin v1.10.0 h1:nTuyha1TYqgedzytsKYqna+DfLos46nTv2ygFy86HFU=
 github.com/gin-gonic/gin v1.10.0/go.mod h1:4PMNQiOhvDRa013RKVbsiNwoyezlm2rm0uX/T7kzp5Y=
-github.com/go-jose/go-jose/v3 v3.0.3 h1:fFKWeig/irsp7XD2zBxvnmA/XaRWp5V3CBsZXJF7G7k=
-github.com/go-jose/go-jose/v3 v3.0.3/go.mod h1:5b+7YgP7ZICgJDBdfjZaIt+H/9L9T/YQrVfLAMboGkQ=
+github.com/go-jose/go-jose/v3 v3.0.4 h1:Wp5HA7bLQcKnf6YYao/4kpRpVMp/yf6+pJKV8WFSaNY=
+github.com/go-jose/go-jose/v3 v3.0.4/go.mod h1:5b+7YgP7ZICgJDBdfjZaIt+H/9L9T/YQrVfLAMboGkQ=
 github.com/go-jose/go-jose/v4 v4.0.5 h1:M6T8+mKZl/+fNNuFHvGIzDz7BTLQPIounk/b9dw3AaE=
 github.com/go-jose/go-jose/v4 v4.0.5/go.mod h1:s3P1lRrkT8igV8D9OjyL4WRyHvjB6a4JSllnOrmmBOA=
 github.com/go-logr/logr v1.2.2/go.mod h1:jdQByPbusPIv2/zmleS9BjJVeZ6kBagPoEUsqbVz/1A=
