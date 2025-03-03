@@ -63,13 +63,13 @@ require (
 	github.com/opencontainers/selinux v1.11.1
 	github.com/openshift/imagebuilder v1.2.15
 	github.com/rootless-containers/rootlesskit/v2 v2.3.2
-	github.com/shirou/gopsutil/v4 v4.25.1
+	github.com/shirou/gopsutil/v4 v4.25.2
 	github.com/sirupsen/logrus v1.9.3
 	github.com/spf13/cobra v1.9.1
 	github.com/spf13/pflag v1.0.6
 	github.com/stretchr/testify v1.10.0
 	github.com/vbauerster/mpb/v8 v8.9.3
-	github.com/vishvananda/netlink v1.3.1-0.20250128002108-7c2350bd140f
+	github.com/vishvananda/netlink v1.3.1-0.20250221194427-0af32151e72b
 	go.etcd.io/bbolt v1.3.11
 	golang.org/x/crypto v0.33.0
 	golang.org/x/exp v0.0.0-20250128182459-e0ece0dbea4c
@@ -146,7 +146,7 @@ require (
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
-	github.com/google/go-cmp v0.6.0 // indirect
+	github.com/google/go-cmp v0.7.0 // indirect
 	github.com/google/go-containerregistry v0.20.2 // indirect
 	github.com/google/go-intervals v0.0.2 // indirect
 	github.com/google/pprof v0.0.0-20241210010833-40e02aabc2ad // indirect
