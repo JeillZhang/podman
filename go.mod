@@ -57,7 +57,7 @@ require (
 	github.com/onsi/gomega v1.36.2
 	github.com/opencontainers/go-digest v1.0.0
 	github.com/opencontainers/image-spec v1.1.1
-	github.com/opencontainers/runc v1.2.5
+	github.com/opencontainers/runc v1.2.6
 	github.com/opencontainers/runtime-spec v1.2.1
 	github.com/opencontainers/runtime-tools v0.9.1-0.20241108202711-f7e3563b0271
 	github.com/opencontainers/selinux v1.11.1
@@ -72,7 +72,7 @@ require (
 	github.com/vishvananda/netlink v1.3.1-0.20250221194427-0af32151e72b
 	go.etcd.io/bbolt v1.3.11
 	golang.org/x/crypto v0.36.0
-	golang.org/x/net v0.36.0
+	golang.org/x/net v0.37.0
 	golang.org/x/sync v0.12.0
 	golang.org/x/sys v0.31.0
 	golang.org/x/term v0.30.0
