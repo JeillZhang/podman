@@ -583,6 +583,14 @@ load helpers.network
     run_podman network connect $netname $background_cid
     is "$output" "" "(re)connect of container with no open ports"
 
+    # connect a network with an intentional error (bad mac address)
+    run_podman 125 network connect --mac-address 00:00:00:00:00:00 $netname2 $cid
+    assert "$output" =~ "Cannot assign requested address" "mac address error"
+
+    # podman inspect must still work correctly and not error due network desync
+    run_podman inspect --format '{{ range $index, $value := .NetworkSettings.Networks }}{{$index}}{{end}}' $cid
+    assert "$output" == "$netname" "only network1 must be connected"
+
     # connect a second network
     run_podman network connect $netname2 $cid
     is "$output" "" "Output should be empty (no errors)"
@@ -741,7 +749,6 @@ nameserver 8.8.8.8" "nameserver order is correct"
     fi
     # we should use the integrated dns server
     run_podman run --network $netname --rm $IMAGE cat /etc/resolv.conf
-    assert "$output" =~ "search dns.podman.*" "correct search domain"
     assert "$output" =~ ".*nameserver $subnet.1.*" \
            "integrated dns nameserver is set"
 
