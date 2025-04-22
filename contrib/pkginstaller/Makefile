@@ -6,8 +6,8 @@ ifeq ($(ARCH), aarch64)
 else
 	GOARCH:=$(ARCH)
 endif
-GVPROXY_VERSION ?= 0.8.4
-VFKIT_VERSION ?= 0.6.0
+GVPROXY_VERSION ?= $(shell grep github.com/containers/gvisor-tap-vsock ../../go.mod  | cut -d" " -f2)
+VFKIT_VERSION ?= 0.6.1
 KRUNKIT_VERSION ?= 0.2.0
 GVPROXY_RELEASE_URL ?= https://github.com/containers/gvisor-tap-vsock/releases/download/v$(GVPROXY_VERSION)/gvproxy-darwin
 VFKIT_RELEASE_URL ?= https://github.com/crc-org/vfkit/releases/download/v$(VFKIT_VERSION)/vfkit-unsigned
