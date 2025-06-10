@@ -361,7 +361,7 @@ $(IN_CONTAINER): %-in-container:
 	$(PODMANCMD) run --rm --env HOME=/root \
 		-v $(CURDIR):/src -w /src \
 		--security-opt label=disable \
-		docker.io/library/golang:1.22 \
+		quay.io/libpod/validatepr:latest \
 		make $(*)
 
 
@@ -478,9 +478,7 @@ podman-testing: bin/podman-testing
 
 .PHONY: generate-bindings
 generate-bindings: .install.golangci-lint
-ifneq ($(GOOS),darwin)
 	$(GOCMD) generate ./pkg/bindings/... ;
-endif
 
 .PHONY: local-cross
 local-cross: $(CROSS_BUILD_TARGETS) ## Cross compile podman binary for multiple architectures
