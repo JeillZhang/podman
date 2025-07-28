@@ -2,6 +2,7 @@
 
 load helpers
 load helpers.network
+load helpers.registry
 
 # bats test_tags=distro-integration, ci:parallel
 @test "podman run - basic tests" {
@@ -751,9 +752,36 @@ json-file | f
 
     run_podman run --rm -p 8080 --net=host $IMAGE echo $rand
     is "${lines[0]}" \
-       "Port mappings have been discarded as one of the Host, Container, Pod, and None network modes are in use" \
+       "Port mappings have been discarded because \"host\" network namespace mode does not support them" \
        "Warning is emitted before container output"
     is "${lines[1]}" "$rand" "Container runs successfully despite warning"
+}
+
+# bats test_tags=ci:parallel
+@test "podman run with --net=none and --port prints warning" {
+    rand=$(random_string 10)
+
+    run_podman run --rm -p 8080 --net=none $IMAGE echo $rand
+    is "${lines[0]}" \
+       "Port mappings have been discarded because \"none\" network namespace mode does not support them" \
+       "Warning is emitted before container output"
+    is "${lines[1]}" "$rand" "Container runs successfully despite warning"
+}
+
+# bats test_tags=ci:parallel
+@test "podman run with --net=container:id and --port prints warning" {
+    rand=$(random_string 10)
+
+    run_podman run -d --name=$rand $IMAGE top
+    cid=$output
+    run_podman run --rm -p 8080 --net=container:$cid $IMAGE echo $rand
+    is "${lines[0]}" \
+       "Port mappings have been discarded because \"container\" network namespace mode does not support them" \
+       "Warning is emitted before container output"
+    is "${lines[1]}" "$rand" "Container runs successfully despite warning"
+
+    # Cleanup
+    run_podman container rm -f -t0 $cid
 }
 
 # bats test_tags=ci:parallel
@@ -1825,6 +1853,37 @@ EOF
     is "$output" "8kB"
 
     run_podman rm -f $c1name $c2name
+}
+
+# bats test_tags=networking,registry
+@test "podman run with --cert-dir" {
+    skip_if_remote "cert-dir option not working via remote"
+
+    test -n "$PODMAN_LOGIN_REGISTRY_PORT" || skip "registry not set up"
+
+    start_registry
+
+    image=localhost:${PODMAN_LOGIN_REGISTRY_PORT}/cert-dir-run-test-$(safename)
+
+    # First push an image to our test registry
+    run_podman push \
+               --cert-dir ${PODMAN_LOGIN_WORKDIR}/trusted-registry-cert-dir \
+               --creds ${PODMAN_LOGIN_USER}:${PODMAN_LOGIN_PASS} \
+               $IMAGE $image
+
+    # Run without --cert-dir should fail (TLS verification error)
+    run_podman 125 run --rm \
+               --creds ${PODMAN_LOGIN_USER}:${PODMAN_LOGIN_PASS} \
+               $image echo "this should fail"
+
+    # Run with --cert-dir should succeed (will pull the image)
+    run_podman run --rm \
+               --cert-dir ${PODMAN_LOGIN_WORKDIR}/trusted-registry-cert-dir \
+               --creds ${PODMAN_LOGIN_USER}:${PODMAN_LOGIN_PASS} \
+               $image true
+
+    # Clean up, and it would fail if the $image was not pulled
+    run_podman rmi $image
 }
 
 # vim: filetype=sh
