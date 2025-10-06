@@ -537,21 +537,21 @@ func process() bool {
 		switch {
 		case strings.HasSuffix(unit.Filename, ".container"):
 			warnIfAmbiguousName(unit, quadlet.ContainerGroup)
-			service, warnings, err = quadlet.ConvertContainer(unit, isUserFlag, unitsInfoMap)
+			service, warnings, err = quadlet.ConvertContainer(unit, unitsInfoMap, isUserFlag)
 		case strings.HasSuffix(unit.Filename, ".volume"):
 			warnIfAmbiguousName(unit, quadlet.VolumeGroup)
-			service, warnings, err = quadlet.ConvertVolume(unit, unit.Filename, unitsInfoMap, isUserFlag)
+			service, warnings, err = quadlet.ConvertVolume(unit, unitsInfoMap, isUserFlag)
 		case strings.HasSuffix(unit.Filename, ".kube"):
 			service, err = quadlet.ConvertKube(unit, unitsInfoMap, isUserFlag)
 		case strings.HasSuffix(unit.Filename, ".network"):
-			service, warnings, err = quadlet.ConvertNetwork(unit, unit.Filename, unitsInfoMap, isUserFlag)
+			service, warnings, err = quadlet.ConvertNetwork(unit, unitsInfoMap, isUserFlag)
 		case strings.HasSuffix(unit.Filename, ".image"):
 			warnIfAmbiguousName(unit, quadlet.ImageGroup)
 			service, err = quadlet.ConvertImage(unit, unitsInfoMap, isUserFlag)
 		case strings.HasSuffix(unit.Filename, ".build"):
 			service, warnings, err = quadlet.ConvertBuild(unit, unitsInfoMap, isUserFlag)
 		case strings.HasSuffix(unit.Filename, ".pod"):
-			service, warnings, err = quadlet.ConvertPod(unit, unit.Filename, unitsInfoMap, isUserFlag)
+			service, warnings, err = quadlet.ConvertPod(unit, unitsInfoMap, isUserFlag)
 		default:
 			Logf("Unsupported file type %q", unit.Filename)
 			continue
