@@ -20,7 +20,7 @@ require (
 	github.com/containers/winquit v1.1.0
 	github.com/coreos/go-systemd/v22 v22.6.0
 	github.com/crc-org/vfkit v0.6.1
-	github.com/cyphar/filepath-securejoin v0.4.1
+	github.com/cyphar/filepath-securejoin v0.5.1
 	github.com/digitalocean/go-qemu v0.0.0-20250212194115-ee9b0668d242
 	github.com/docker/distribution v2.8.3+incompatible
 	github.com/docker/docker v28.5.2+incompatible
@@ -49,7 +49,7 @@ require (
 	github.com/nxadm/tail v1.4.11
 	github.com/onsi/ginkgo/v2 v2.27.2
 	github.com/onsi/gomega v1.38.2
-	github.com/opencontainers/cgroups v0.0.5
+	github.com/opencontainers/cgroups v0.0.6
 	github.com/opencontainers/go-digest v1.0.0
 	github.com/opencontainers/image-spec v1.1.1
 	github.com/opencontainers/runtime-spec v1.2.1
