@@ -18,7 +18,7 @@ require (
 	github.com/containers/ocicrypt v1.2.1
 	github.com/containers/psgo v1.10.0
 	github.com/containers/winquit v1.1.0
-	github.com/coreos/go-systemd/v22 v22.6.0
+	github.com/coreos/go-systemd/v22 v22.7.0
 	github.com/crc-org/vfkit v0.6.3
 	github.com/cyphar/filepath-securejoin v0.6.1
 	github.com/digitalocean/go-qemu v0.0.0-20250212194115-ee9b0668d242
@@ -68,7 +68,7 @@ require (
 	go.podman.io/image/v5 v5.38.1-0.20251209230740-724707234895
 	go.podman.io/storage v1.61.1-0.20251209230740-724707234895
 	golang.org/x/crypto v0.47.0
-	golang.org/x/net v0.48.0
+	golang.org/x/net v0.49.0
 	golang.org/x/sync v0.19.0
 	golang.org/x/sys v0.40.0
 	golang.org/x/term v0.39.0
