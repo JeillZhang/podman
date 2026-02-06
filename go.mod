@@ -54,7 +54,7 @@ require (
 	github.com/opencontainers/runtime-spec v1.3.0
 	github.com/opencontainers/runtime-tools v0.9.1-0.20251205004911-5e639034dcdc
 	github.com/opencontainers/selinux v1.13.1
-	github.com/openshift/imagebuilder v1.2.19
+	github.com/openshift/imagebuilder v1.2.20
 	github.com/rootless-containers/rootlesskit/v2 v2.3.6
 	github.com/shirou/gopsutil/v4 v4.25.12
 	github.com/sirupsen/logrus v1.9.4
@@ -63,9 +63,9 @@ require (
 	github.com/stretchr/testify v1.11.1
 	github.com/vbauerster/mpb/v8 v8.11.3
 	github.com/vishvananda/netlink v1.3.1
-	go.podman.io/common v0.66.2-0.20260126213724-1e46b0756b39
-	go.podman.io/image/v5 v5.38.1-0.20260123202709-b5801a635dfa
-	go.podman.io/storage v1.61.1-0.20260123202709-b5801a635dfa
+	go.podman.io/common v0.66.2-0.20260204175822-4e7127fdc31f
+	go.podman.io/image/v5 v5.38.1-0.20260204175822-4e7127fdc31f
+	go.podman.io/storage v1.61.1-0.20260204175822-4e7127fdc31f
 	golang.org/x/crypto v0.47.0
 	golang.org/x/net v0.49.0
 	golang.org/x/sync v0.19.0
@@ -139,8 +139,8 @@ require (
 	github.com/mistifyio/go-zfs/v4 v4.0.0 // indirect
 	github.com/moby/buildkit v0.26.3 // indirect
 	github.com/moby/go-archive v0.1.0 // indirect
-	github.com/moby/moby/api v1.52.0 // indirect
-	github.com/moby/moby/client v0.2.1 // indirect
+	github.com/moby/moby/api v1.53.0 // indirect
+	github.com/moby/moby/client v0.2.2 // indirect
 	github.com/moby/patternmatcher v0.6.0 // indirect
 	github.com/moby/sys/mountinfo v0.7.2 // indirect
 	github.com/moby/sys/sequential v0.6.0 // indirect
