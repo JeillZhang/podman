@@ -18,14 +18,15 @@ var (
 
 	quadletListCmd = &cobra.Command{
 		Use:               "list [options]",
+		Aliases:           []string{"ls"},
 		Short:             "List Quadlets",
 		Long:              quadletListDescription,
 		RunE:              list,
 		Args:              validate.NoArgs,
 		ValidArgsFunction: completion.AutocompleteNone,
 		Example: `podman quadlet list
-podman quadlet list --format '{{ .UnitName }}'
-podman quadlet list --filter 'name=test*'`,
+  podman quadlet list --format '{{ .UnitName }}'
+  podman quadlet list --filter 'name=test*'`,
 	}
 
 	listOptions entities.QuadletListOptions
