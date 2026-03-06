@@ -25,6 +25,7 @@ import (
 	"go.podman.io/common/pkg/config"
 	"go.podman.io/common/pkg/secrets"
 	"go.podman.io/image/v5/manifest"
+	"go.podman.io/image/v5/pkg/cli/basetls"
 	"go.podman.io/storage"
 	"go.podman.io/storage/pkg/fileutils"
 	"go.podman.io/storage/pkg/idtools"
@@ -222,6 +223,14 @@ func WithRegistriesConf(path string) RuntimeOption {
 		}
 
 		rt.imageContext.SystemRegistriesConfPath = path
+		return nil
+	}
+}
+
+// WithBaseTLSConfig sets the TLS _algorithm_ options for the runtime.
+func WithBaseTLSConfig(baseTLSConfig *basetls.Config) RuntimeOption {
+	return func(rt *Runtime) error {
+		rt.imageContext.BaseTLSConfig = baseTLSConfig.TLSConfig()
 		return nil
 	}
 }
@@ -1041,6 +1050,19 @@ func WithLogTag(tag string) CtrCreateOption {
 		}
 
 		ctr.config.LogTag = tag
+
+		return nil
+	}
+}
+
+// WithLogLabels sets the labels to the log file.
+func WithLogLabels(logLabels map[string]string) CtrCreateOption {
+	return func(ctr *Container) error {
+		if ctr.valid {
+			return define.ErrCtrFinalized
+		}
+
+		ctr.config.LogLabels = logLabels
 
 		return nil
 	}
