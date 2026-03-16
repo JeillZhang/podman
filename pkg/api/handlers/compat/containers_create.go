@@ -127,6 +127,10 @@ func CreateContainer(w http.ResponseWriter, r *http.Request) {
 	ic := abi.ContainerEngine{Libpod: runtime}
 	report, err := ic.ContainerCreate(r.Context(), sg)
 	if err != nil {
+		if errors.Is(err, define.ErrCtrExists) || errors.Is(err, storage.ErrDuplicateName) {
+			utils.Error(w, http.StatusConflict, fmt.Errorf("container create: %w", err))
+			return
+		}
 		utils.Error(w, http.StatusInternalServerError, fmt.Errorf("container create: %w", err))
 		return
 	}
@@ -345,12 +349,6 @@ func cliOpts(cc handlers.CreateContainerConfig, rtc *config.Config) (*entities.C
 			netOpts := types.PerNetworkOptions{}
 			if endpoint != nil {
 				netOpts.Aliases = endpoint.Aliases
-
-				// if IP address is provided
-				if endpoint.IPAddress.IsValid() {
-					staticIP := net.IP(endpoint.IPAddress.AsSlice())
-					netOpts.StaticIPs = append(netOpts.StaticIPs, staticIP)
-				}
 
 				if endpoint.IPAMConfig != nil {
 					// if IPAMConfig.IPv4Address is provided
