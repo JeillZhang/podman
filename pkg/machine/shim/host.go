@@ -14,21 +14,22 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/containers/podman/v6/cmd/podman/registry"
-	"github.com/containers/podman/v6/pkg/machine"
-	"github.com/containers/podman/v6/pkg/machine/connection"
-	machineDefine "github.com/containers/podman/v6/pkg/machine/define"
-	"github.com/containers/podman/v6/pkg/machine/env"
-	"github.com/containers/podman/v6/pkg/machine/ignition"
-	"github.com/containers/podman/v6/pkg/machine/lock"
-	"github.com/containers/podman/v6/pkg/machine/provider"
-	"github.com/containers/podman/v6/pkg/machine/proxyenv"
-	"github.com/containers/podman/v6/pkg/machine/shim/diskpull"
-	"github.com/containers/podman/v6/pkg/machine/vmconfigs"
-	"github.com/containers/podman/v6/utils"
 	"github.com/hashicorp/go-multierror"
 	"github.com/sirupsen/logrus"
 	"go.podman.io/common/pkg/config"
+	"go.podman.io/podman/v6/cmd/podman/registry"
+	"go.podman.io/podman/v6/pkg/machine"
+	"go.podman.io/podman/v6/pkg/machine/certificates"
+	"go.podman.io/podman/v6/pkg/machine/connection"
+	machineDefine "go.podman.io/podman/v6/pkg/machine/define"
+	"go.podman.io/podman/v6/pkg/machine/env"
+	"go.podman.io/podman/v6/pkg/machine/ignition"
+	"go.podman.io/podman/v6/pkg/machine/lock"
+	"go.podman.io/podman/v6/pkg/machine/provider"
+	"go.podman.io/podman/v6/pkg/machine/proxyenv"
+	"go.podman.io/podman/v6/pkg/machine/shim/diskpull"
+	"go.podman.io/podman/v6/pkg/machine/vmconfigs"
+	"go.podman.io/podman/v6/utils"
 	"golang.org/x/term"
 )
 
@@ -117,6 +118,7 @@ func Init(opts machineDefine.InitOptions, mp vmconfigs.VMProvider) error {
 	}
 
 	mc.Version = vmconfigs.MachineConfigVersion
+	mc.ImportNativeCA = opts.ImportNativeCA
 
 	createOpts := machineDefine.CreateVMOpts{
 		Name:   opts.Name,
@@ -655,6 +657,17 @@ func Start(mc *vmconfigs.MachineConfig, mp vmconfigs.VMProvider, opts machine.St
 		return err
 	}
 
+	// Import native CA certificates if enabled
+	if mc.ImportNativeCA {
+		if err := certificates.ImportNativeCertificates(mc, mp.VMType()); err != nil {
+			// Warn the user but continue the machine startup process
+			logrus.Warnf("Failed to import native CA certificates: %v", err)
+			fmt.Println("Warning: Failed to import host trusted CA certificates. The machine will start without them.")
+		} else if !opts.Quiet {
+			fmt.Println("The host trusted CA certificates have been imported successfully")
+		}
+	}
+
 	// mount the volumes to the VM
 	if err := mp.MountVolumesToVM(mc, opts.Quiet); err != nil {
 		return err
@@ -729,6 +742,10 @@ func Set(mc *vmconfigs.MachineConfig, mp vmconfigs.VMProvider, opts machineDefin
 			return fmt.Errorf("new disk size must be larger than %d GB", mc.Resources.DiskSize)
 		}
 		mc.Resources.DiskSize = *opts.DiskSize
+	}
+
+	if opts.ImportNativeCA != nil {
+		mc.ImportNativeCA = *opts.ImportNativeCA
 	}
 
 	if err := mp.SetProviderAttrs(mc, opts); err != nil {
@@ -862,11 +879,18 @@ func Reset(mps []vmconfigs.VMProvider, _ machine.ResetOptions) error {
 				resetErrors = multierror.Append(resetErrors, err)
 			}
 
-			if err := genericRm(); err != nil {
-				resetErrors = multierror.Append(resetErrors, err)
+			if genericRm != nil {
+				if err := genericRm(); err != nil {
+					resetErrors = multierror.Append(resetErrors, err)
+				}
 			}
-			if err := providerRm(); err != nil {
-				resetErrors = multierror.Append(resetErrors, err)
+			// We must check if the returned providerRm function is not nil before executing it.
+			// If a provider (like Hyper-V) encountered an error during the removal setup
+			// phase (e.g., a cancelled 'runas' elevation), it returns nil for the function.
+			if providerRm != nil {
+				if err := providerRm(); err != nil {
+					resetErrors = multierror.Append(resetErrors, err)
+				}
 			}
 		}
 	}

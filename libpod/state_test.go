@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/containers/podman/v6/libpod/define"
-	"github.com/containers/podman/v6/libpod/lock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.podman.io/common/pkg/config"
+	"go.podman.io/podman/v6/libpod/define"
+	"go.podman.io/podman/v6/libpod/lock"
 	"go.podman.io/storage"
 )
 
@@ -2428,5 +2428,19 @@ func TestGetContainerConfigNonExistentIDFails(t *testing.T) {
 	runForAllStates(t, func(t *testing.T, state State, _ lock.Manager) {
 		_, err := state.GetContainerConfig("does not exist")
 		assert.Error(t, err)
+	})
+}
+
+func TestRemoveVolumeNotInDB(t *testing.T) {
+	runForAllStates(t, func(t *testing.T, state State, _ lock.Manager) {
+		v := &Volume{
+			config: &VolumeConfig{
+				Name: "Test",
+			},
+			valid: true,
+		}
+		err := state.RemoveVolume(v)
+		require.Error(t, err)
+		require.ErrorIs(t, err, define.ErrNoSuchVolume)
 	})
 }
