@@ -56,23 +56,23 @@ require (
 	github.com/opencontainers/selinux v1.13.1
 	github.com/openshift/imagebuilder v1.2.20
 	github.com/rootless-containers/rootlesskit/v2 v2.3.6
-	github.com/shirou/gopsutil/v4 v4.26.3
+	github.com/shirou/gopsutil/v4 v4.26.4
 	github.com/sirupsen/logrus v1.9.4
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/pflag v1.0.10
 	github.com/stretchr/testify v1.11.1
 	github.com/vbauerster/mpb/v8 v8.12.0
 	github.com/vishvananda/netlink v1.3.1
-	go.podman.io/buildah v1.42.1-0.20260421143840-0acb6b8cca85
-	go.podman.io/common v0.67.2-0.20260430110239-06cbc5da36f1
-	go.podman.io/image/v5 v5.39.3-0.20260430110239-06cbc5da36f1
-	go.podman.io/storage v1.62.1-0.20260430110239-06cbc5da36f1
+	go.podman.io/buildah v1.42.1-0.20260501153811-377cf64e213b
+	go.podman.io/common v0.67.2-0.20260504145149-b5d50461d3b9
+	go.podman.io/image/v5 v5.39.3-0.20260504145149-b5d50461d3b9
+	go.podman.io/storage v1.62.1-0.20260504145149-b5d50461d3b9
 	golang.org/x/crypto v0.50.0
 	golang.org/x/net v0.53.0
 	golang.org/x/sync v0.20.0
 	golang.org/x/sys v0.43.0
 	golang.org/x/term v0.42.0
-	google.golang.org/grpc v1.80.0
+	google.golang.org/grpc v1.81.0
 	google.golang.org/protobuf v1.36.11
 	gopkg.in/inf.v0 v0.9.1
 	gopkg.in/yaml.v3 v3.0.1
@@ -112,7 +112,7 @@ require (
 	github.com/docker/docker-credential-helpers v0.9.6 // indirect
 	github.com/ebitengine/purego v0.10.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
-	github.com/fsnotify/fsnotify v1.9.0 // indirect
+	github.com/fsnotify/fsnotify v1.10.1 // indirect
 	github.com/fsouza/go-dockerclient v1.13.1 // indirect
 	github.com/go-jose/go-jose/v4 v4.1.4 // indirect
 	github.com/go-logr/logr v1.4.3 // indirect
@@ -129,7 +129,7 @@ require (
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-retryablehttp v0.7.8 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/klauspost/compress v1.18.5 // indirect
+	github.com/klauspost/compress v1.18.6 // indirect
 	github.com/kr/fs v0.1.0 // indirect
 	github.com/lufia/plan9stats v0.0.0-20240909124753-873cd0166683 // indirect
 	github.com/manifoldco/promptui v0.9.0 // indirect
@@ -168,7 +168,7 @@ require (
 	github.com/tklauser/numcpus v0.11.0 // indirect
 	github.com/u-root/uio v0.0.0-20240224005618-d2acac8f3701 // indirect
 	github.com/ulikunitz/xz v0.5.15 // indirect
-	github.com/vbatts/tar-split v0.12.2 // indirect
+	github.com/vbatts/tar-split v0.12.3 // indirect
 	github.com/vishvananda/netns v0.0.5 // indirect
 	github.com/yusufpapurcu/wmi v1.2.4 // indirect
 	go.etcd.io/bbolt v1.4.3 // indirect
