@@ -30,7 +30,7 @@ require (
 	github.com/gorilla/mux v1.8.1
 	github.com/gorilla/schema v1.4.1
 	github.com/hashicorp/go-multierror v1.1.1
-	github.com/hugelgupf/p9 v0.3.1-0.20260209234446-ba5af0b37df0
+	github.com/hugelgupf/p9 v0.4.0
 	github.com/jinzhu/copier v0.4.0
 	github.com/json-iterator/go v1.1.12
 	github.com/kevinburke/ssh_config v1.5.0
@@ -64,9 +64,9 @@ require (
 	github.com/vbauerster/mpb/v8 v8.12.0
 	github.com/vishvananda/netlink v1.3.1
 	go.podman.io/buildah v1.42.1-0.20260501153811-377cf64e213b
-	go.podman.io/common v0.67.2-0.20260504145149-b5d50461d3b9
-	go.podman.io/image/v5 v5.39.3-0.20260504145149-b5d50461d3b9
-	go.podman.io/storage v1.62.1-0.20260504145149-b5d50461d3b9
+	go.podman.io/common v0.67.2-0.20260506114327-35c76125c5b5
+	go.podman.io/image/v5 v5.39.3-0.20260506114327-35c76125c5b5
+	go.podman.io/storage v1.62.1-0.20260506114327-35c76125c5b5
 	golang.org/x/crypto v0.50.0
 	golang.org/x/net v0.53.0
 	golang.org/x/sync v0.20.0
