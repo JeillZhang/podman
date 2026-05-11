@@ -10,7 +10,7 @@ require (
 	github.com/blang/semver/v4 v4.0.0
 	github.com/checkpoint-restore/checkpointctl v1.5.0
 	github.com/checkpoint-restore/go-criu/v7 v7.2.0
-	github.com/containers/gvisor-tap-vsock v0.8.8
+	github.com/containers/gvisor-tap-vsock v0.8.9
 	github.com/containers/libhvee v0.11.0
 	github.com/containers/ocicrypt v1.3.0
 	github.com/containers/psgo v1.10.0
@@ -53,7 +53,7 @@ require (
 	github.com/opencontainers/image-spec v1.1.1
 	github.com/opencontainers/runtime-spec v1.3.0
 	github.com/opencontainers/runtime-tools v0.9.1-0.20260316125833-8a4db579f5c8
-	github.com/opencontainers/selinux v1.13.1
+	github.com/opencontainers/selinux v1.14.1
 	github.com/openshift/imagebuilder v1.2.21
 	github.com/rootless-containers/rootlesskit/v2 v2.3.6
 	github.com/shirou/gopsutil/v4 v4.26.4
@@ -65,9 +65,9 @@ require (
 	github.com/vishvananda/netlink v1.3.1
 	go.etcd.io/bbolt v1.4.3
 	go.podman.io/buildah v1.42.1-0.20260501153811-377cf64e213b
-	go.podman.io/common v0.67.2-0.20260506114327-35c76125c5b5
-	go.podman.io/image/v5 v5.39.3-0.20260506114327-35c76125c5b5
-	go.podman.io/storage v1.62.1-0.20260506114327-35c76125c5b5
+	go.podman.io/common v0.67.2-0.20260511131139-020a2274da88
+	go.podman.io/image/v5 v5.39.3-0.20260511131139-020a2274da88
+	go.podman.io/storage v1.62.1-0.20260511131139-020a2274da88
 	golang.org/x/crypto v0.51.0
 	golang.org/x/net v0.54.0
 	golang.org/x/sync v0.20.0
@@ -188,3 +188,9 @@ require (
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	tags.cncf.io/container-device-interface/specs-go v1.1.0 // indirect
 )
+
+replace go.podman.io/common => github.com/Luap99/container-libs/common v0.0.0-20260507114201-8488036ffdbc
+
+replace go.podman.io/image/v5 => github.com/Luap99/container-libs/image/v5 v5.0.0-20260507114201-8488036ffdbc
+
+replace go.podman.io/storage => github.com/Luap99/container-libs/storage v0.0.0-20260507114201-8488036ffdbc
