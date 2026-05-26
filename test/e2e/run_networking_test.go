@@ -1060,6 +1060,8 @@ EXPOSE 2004-2005/tcp`, ALPINE)
 	configurePortForwarder := func(forwarder string) {
 		GinkgoHelper()
 		if forwarder == "pasta" {
+			// TODO: enable after new passt release with SELinux fix for pasta.sock (pasta_t + ifconfig_var_run_t)
+			Skip("disabled: pasta SELinux policy denies pasta.sock creation (needs passt release with fix)")
 			if !isRootless() {
 				Skip("pasta port forwarding requires rootless")
 			}
@@ -1068,7 +1070,7 @@ EXPOSE 2004-2005/tcp`, ALPINE)
 			}
 		}
 		conffile := filepath.Join(podmanTest.TempDir, forwarder+"-forwarder.conf")
-		err := os.WriteFile(conffile, []byte(fmt.Sprintf("[network]\nrootless_port_forwarder=\"%s\"\n", forwarder)), 0o755)
+		err := os.WriteFile(conffile, fmt.Appendf(nil, "[network]\nrootless_port_forwarder=\"%s\"\n", forwarder), 0o755)
 		Expect(err).ToNot(HaveOccurred())
 		GinkgoT().Setenv("CONTAINERS_CONF_OVERRIDE", conffile)
 		if IsRemote() {
